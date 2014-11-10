@@ -11,6 +11,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class OpenDialogueApplication {
 
     public static void main(String[] args) {
+        String webPort = System.getenv("PORT");
+        if (webPort == null || webPort.isEmpty()) {
+            webPort = "8080";
+        }
+        System.setProperty("server.port", webPort);
         SpringApplication.run(OpenDialogueApplication.class, args);
     }
 }
