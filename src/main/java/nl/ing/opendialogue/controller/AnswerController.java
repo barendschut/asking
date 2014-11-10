@@ -1,6 +1,5 @@
 package nl.ing.opendialogue.controller;
 
-import nl.ing.opendialogue.domain.Channel;
 import nl.ing.opendialogue.domain.DialogueResponse;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AnswerController {
 
     @RequestMapping("/answer")
-    public DialogueResponse answerQuery(@RequestParam(value="query") String query, @RequestParam(value="channel") Channel channel) {
+    public DialogueResponse answerQuery(@RequestParam(value="query") String query) {
 
         if (query.contains("pas") && query.contains("gevonden")) {
             return new DialogueResponse("Geef pasnummer en vervaldatum");
