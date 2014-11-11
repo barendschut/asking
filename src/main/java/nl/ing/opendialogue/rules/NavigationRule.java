@@ -19,10 +19,10 @@ public class NavigationRule {
 	}
 	
 	
-	public List<NavigationRule> getNavigationRules() {
+	public static List<NavigationRule> getNavigationRules() {
 		List<NavigationRule> navigationList = new ArrayList<NavigationRule>();
 		
-		navigationList.add(new NavigationRule("", "pas gevonden", "", ""));
+		navigationList.add(new NavigationRule("", "pas gevonden", "Wat zijn de laatste drie cijfers van uw gevonden pas?", "/"));
 		
 		return navigationList;
 		
