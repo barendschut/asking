@@ -9,7 +9,6 @@ public class DialogueRequest {
     }
 
     public String getQuery() {
-
         return query;
     }
 
