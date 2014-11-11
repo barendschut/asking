@@ -18,14 +18,11 @@ public class NavigationRule {
 		this.nextContext = nextContext;
 	}
 	
-	
 	public static List<NavigationRule> getNavigationRules() {
 		List<NavigationRule> navigationList = new ArrayList<NavigationRule>();
 		
 		navigationList.add(new NavigationRule("", "pas gevonden", "Wat zijn de laatste drie cijfers van uw gevonden pas?", "/"));
-		
 		return navigationList;
-		
 	}
 	
 	
