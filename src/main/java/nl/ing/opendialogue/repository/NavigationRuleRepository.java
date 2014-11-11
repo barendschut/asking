@@ -1,10 +1,12 @@
 package nl.ing.opendialogue.repository;
 
 import nl.ing.opendialogue.rules.NavigationRule;
+import nl.ing.opendialogue.rules.NextAction;
 
 public interface NavigationRuleRepository {
 
 	
-	NavigationRule getNextStep();
+
+	NextAction getNextAction(String query, String contextString);
 	
 }
