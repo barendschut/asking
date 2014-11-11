@@ -1,6 +1,5 @@
 package nl.ing.opendialogue.repository;
 
-import nl.ing.opendialogue.rules.NavigationRule;
 import nl.ing.opendialogue.rules.NextAction;
 
 public interface NavigationRuleRepository {

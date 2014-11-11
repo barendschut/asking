@@ -26,7 +26,7 @@ public enum Context {
     
     public static Context getContextFromString(String url) {
     	for (Context context : values()) {
-    		if (context.equals(url)) {
+    		if (context.getURL().equals(url)) {
     			return context;
     		}
     	}
