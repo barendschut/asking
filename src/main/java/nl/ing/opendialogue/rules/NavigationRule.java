@@ -26,10 +26,11 @@ public class NavigationRule {
 		List<NavigationRule> navigationList = new ArrayList<NavigationRule>();
 		
 		navigationList.add(new NavigationRule(null, "pas gevonden", Context.IBAN, "Dank u voor het melden.Als u ons enkele gegevens over de pas kunt verstrekken, dan lichten wij de eigenaar in. Wat is het IBAN nummer van de pas?"));
-		navigationList.add(new NavigationRule(Context.IBAN, "TODO regex number", Context.CARD_NUMBER, "Dank u wat is het pasnummer"));
+		navigationList.add(new NavigationRule(Context.IBAN, "REGEX_ACCOUNT_NUMBER", Context.CARD_NUMBER, "Dank u wat is het pasnummer"));
+		navigationList.add(new NavigationRule(Context.IBAN, "REGEX_NOT_ACCOUNT_NUMBER", Context.IBAN, "Dit is geen iban nummer, geef de laatste 10 cijfers"));
 		navigationList.add(new NavigationRule(Context.CARD_NUMBER, "TODO regex number", Context.CARD_NUMBER_CHECK, null));
 		navigationList.add(new NavigationRule(Context.CARD_NUMBER_CHECK, "OK", Context.CALL_PASSOWNER_TO_BLOCK_PASS, "U mag de pas weggooien. Vanaf nu is deze niet meer bruikbaar"));
-		navigationList.add(new NavigationRule(Context.CARD_NUMBER_CHECK, "NOK", null, "Deze pas kennen we niet. Tot ziens"));
+		navigationList.add(new NavigationRule(Context.CARD_NUMBER_CHECK, "NOK", null, "Deze pas kennen we niet in ons systeem. Tot ziens"));
 				
 		
 		
