@@ -26,7 +26,8 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		List<NextAction> nextActions = new ArrayList<NextAction>();
 		for (NavigationRule rule: NavigationRule.getNavigationRules()) {
 			if (currentContext == rule.getContext()) {
-				nextActions.add(getNextAction(rule));	
+				nextActions.add(getNextAction(rule));
+				
 			}
 		}
 		return nextActions;
