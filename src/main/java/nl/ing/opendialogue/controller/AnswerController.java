@@ -45,7 +45,7 @@ public class AnswerController {
         }
 
     	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
-    	questionForCustomer.setQuestion("Ik heb uw vraag niet begrepen. Kunt u uw vraag op een andere manier stellen?");
+    	questionForCustomer.setQuestion("Met deze vraag kunnen wij u niet helpen. Iets er iets anders waarmee wij u van dienst kunnen zijn?");
 		List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
         return new DialogueResponse(questions);
         
