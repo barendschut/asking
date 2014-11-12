@@ -29,7 +29,7 @@ public class AnswerController {
         if (query.contains("pas") && query.contains("gevonden")) {
         	
         	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
-			List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);
+        	List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);
 			
             DialogueResponse dialogueResponse = new DialogueResponse(questions);
 			dialogueResponse.setContextUrl("http://asking.herokuapp.com/validate-card");
@@ -38,7 +38,7 @@ public class AnswerController {
 
         if (query.contains("rente")) {
         	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
-        	questionForCustomer.setQuestion("Welkom bij de ING. Waarmee kan ik u helpen?");
+        	questionForCustomer.setQuestion("De huidige rentestand is -0.25%");
 			List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
             return new DialogueResponse(questions);
 
