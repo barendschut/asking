@@ -1,30 +1,32 @@
 package nl.ing.opendialogue.domain;
 
+import java.util.List;
+
+/**
+ * Represents a list of answers to the client Based on this list, the client-app
+ * can build a url for this post.
+ */
 public class DialogueResponse {
 
-	private final String answer;
-	private String resourceUrl;
-	private String nextStepUrl;
+	// List of questions for the client
+	private final List<QuestionForCustomer> questions;
 
-	public DialogueResponse(final String answer, final String nextStepUrl) {
-		this.answer = answer;
-		this.nextStepUrl = nextStepUrl;
+	/** Url to post userinput to or to redirect to. */
+	private String contextUrl;
+
+	public DialogueResponse(final List<QuestionForCustomer> questions) {
+		this.questions = questions;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public List<QuestionForCustomer> getQuestions() {
+		return questions;
 	}
 
-	public String getNextStepUrl() {
-		return nextStepUrl;
-	}
-	
-	public String getResourceUrl() {
-		return resourceUrl;
+	public String getContextUrl() {
+		return contextUrl;
 	}
 
-	public void setUrl(String url) {
-		this.resourceUrl = url;
+	public void setContextUrl(String contextUrl) {
+		this.contextUrl = contextUrl;
 	}
-
 }

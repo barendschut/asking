@@ -1,31 +1,53 @@
 package nl.ing.opendialogue.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import nl.ing.opendialogue.domain.DialogueResponse;
+import nl.ing.opendialogue.domain.QuestionForCustomer;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AnswerController {
 
     @RequestMapping("/answer")
-    public DialogueResponse answerQuery(@RequestParam(value="query") String query) {
+    public DialogueResponse answerQuery(final String query) {
     	
-    	if (StringUtils.isEmpty(query)) {
-            return new DialogueResponse("Stel uw vraag", null);
+    	
+		if (StringUtils.isEmpty(query)) {
+
+        	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+        	questionForCustomer.setQuestion("Welkom bij de ING. Waarmee kan ik u helpen?");
+			List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
+    		
+    		return new DialogueResponse(questions);
     	}
 
         if (query.contains("pas") && query.contains("gevonden")) {
-            return new DialogueResponse("Geef pasnummer en vervaldatum", null);
+        	
+        	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+        	List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);
+			
+            DialogueResponse dialogueResponse = new DialogueResponse(questions);
+			dialogueResponse.setContextUrl("/validate-card");
+			return dialogueResponse;
         }
 
         if (query.contains("rente")) {
-            return new DialogueResponse("De rente is momenteel -0,25 procent", null);
+        	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+        	questionForCustomer.setQuestion("De huidige rentestand is -0.25%");
+			List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
+            return new DialogueResponse(questions);
+
         }
 
-        return new DialogueResponse("Kunt u de vraag op een andere manier stellen?", null);
+    	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+    	questionForCustomer.setQuestion("Met deze vraag kunnen wij u niet helpen. Iets er iets anders waarmee wij u van dienst kunnen zijn?");
+		List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
+        return new DialogueResponse(questions);
         
     }
 }
