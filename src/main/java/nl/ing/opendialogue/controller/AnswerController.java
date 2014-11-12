@@ -1,5 +1,9 @@
 package nl.ing.opendialogue.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
+import nl.ing.opendialogue.domain.QuestionForCustomer;
 import nl.ing.opendialogue.domain.DialogueResponse;
 
 import org.springframework.util.StringUtils;
@@ -14,18 +18,36 @@ public class AnswerController {
     public DialogueResponse answerQuery(@RequestParam(value="query") String query) {
     	
     	if (StringUtils.isEmpty(query)) {
-            return new DialogueResponse("Stel uw vraag", null);
+
+        	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+        	questionForCustomer.setQuestion("Welkom bij de ING. Waarmee kan ik u helpen?");
+			List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
+    		
+    		return new DialogueResponse(questions);
     	}
 
         if (query.contains("pas") && query.contains("gevonden")) {
-            return new DialogueResponse("Geef pasnummer en vervaldatum", null);
+        	
+        	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+			List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);
+			
+            DialogueResponse dialogueResponse = new DialogueResponse(questions);
+			dialogueResponse.setContextUrl("http://asking.herokuapp.com/validate-card");
+			return dialogueResponse;
         }
 
         if (query.contains("rente")) {
-            return new DialogueResponse("De rente is momenteel -0,25 procent", null);
+        	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+        	questionForCustomer.setQuestion("Welkom bij de ING. Waarmee kan ik u helpen?");
+			List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
+            return new DialogueResponse(questions);
+
         }
 
-        return new DialogueResponse("Kunt u de vraag op een andere manier stellen?", null);
+    	QuestionForCustomer questionForCustomer = new QuestionForCustomer();
+    	questionForCustomer.setQuestion("Ik heb uw vraag niet begrepen. Kunt u uw vraag op een andere manier stellen?");
+		List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);    		
+        return new DialogueResponse(questions);
         
     }
 }
