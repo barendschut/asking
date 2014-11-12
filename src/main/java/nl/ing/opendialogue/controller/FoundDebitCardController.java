@@ -46,11 +46,20 @@ public class FoundDebitCardController {
     	//    	@RequestParam(value="cardNumber") String cardNumber, @RequestParam(value="expiryDate") String expiryDate
         if (cardNumber.contains("1234") && expiryDate.contains("072017")) {
         	
+        	// Gevonden flow
+        	// creditcard is gevonden in de backend.
+        	// haal de volgende stap op in de dialogue manager
+        	// dialogue manager geeft terug "u heeft de volgende gegevens ingevoerd"
+        	
+        	
         	QuestionForCustomer answerToClient = new QuestionForCustomer();
-        	answerToClient.setQuestion("Bedankt! Deze pas wordt geblokkeerd.");
-			List<QuestionForCustomer> answers = Arrays.asList(answerToClient);    		
+        	answerToClient.setQuestion("Bedankt voor het aanmelden van deze gevonden credit card! Deze pas wordt geblokkeerd.");
+        	
+        	List<QuestionForCustomer> answers = Arrays.asList(answerToClient);    		
     		
-    		return new DialogueResponse(answers);
+    		DialogueResponse dialogueResponse = new DialogueResponse(answers);
+    		dialogueResponse.setContextUrl("/answer?query=");
+			return dialogueResponse;
         }
 
     	QuestionForCustomer questionForCustomer = new QuestionForCustomer();

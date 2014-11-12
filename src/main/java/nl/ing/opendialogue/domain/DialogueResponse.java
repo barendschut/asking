@@ -11,12 +11,7 @@ public class DialogueResponse {
 	// List of questions for the client
 	private final List<QuestionForCustomer> questions;
 
-	/**
-	 * Url to post all userinput to. Example pasnummer and vervaldatum should be
-	 * submitted to
-	 * https://asking.herokuapp.com/validate-card/card-number/1234/expiryDate
-	 * /072017
-	 * */
+	/** Url to post userinput to or to redirect to. */
 	private String contextUrl;
 
 	public DialogueResponse(final List<QuestionForCustomer> questions) {
