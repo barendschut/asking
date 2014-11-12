@@ -32,7 +32,7 @@ public enum RegexRule {
 	}
 
 	
-	private String getRegularExpression() {
+	public String getRegularExpression() {
 		return regularExpression;
 	}
 
