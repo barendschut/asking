@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AnswerController {
 
-    @RequestMapping("/answer")
+    private static final String HEROKU_URL = "http://asking.herokuapp.com";
+
+	@RequestMapping("/answer")
     public DialogueResponse answerQuery(final String query) {
-    	
     	
 		if (StringUtils.isEmpty(query)) {
 
@@ -32,7 +33,7 @@ public class AnswerController {
         	List<QuestionForCustomer> questions = Arrays.asList(questionForCustomer);
 			
             DialogueResponse dialogueResponse = new DialogueResponse(questions);
-			dialogueResponse.setContextUrl("/validate-card");
+			dialogueResponse.setContextUrl(HEROKU_URL + "/validate-card");
 			return dialogueResponse;
         }
 

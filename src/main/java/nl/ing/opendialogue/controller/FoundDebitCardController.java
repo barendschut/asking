@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FoundDebitCardController {
 
+    private static final String HEROKU_URL = "http://asking.herokuapp.com";
+
     @RequestMapping(value = "/validate-card", method = RequestMethod.GET)
     public DialogueResponse validateCardQuestion() {
        
@@ -32,7 +34,7 @@ public class FoundDebitCardController {
     	List<QuestionForCustomer> questions = Arrays.asList(questionVervaldatum, questionPasnummer);    		
 		
 		DialogueResponse response = new DialogueResponse(questions);
-    	response.setContextUrl("/validate-card");
+    	response.setContextUrl(HEROKU_URL +"/validate-card");
     	
     	return response;
     }
@@ -58,7 +60,7 @@ public class FoundDebitCardController {
         	List<QuestionForCustomer> answers = Arrays.asList(answerToClient);    		
     		
     		DialogueResponse dialogueResponse = new DialogueResponse(answers);
-    		dialogueResponse.setContextUrl("/answer?query=");
+    		dialogueResponse.setContextUrl(HEROKU_URL +"/answer?query=");
 			return dialogueResponse;
         }
 
