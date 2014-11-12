@@ -3,6 +3,7 @@ package nl.ing.opendialogue.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.ing.opendialogue.domain.DialogueResponse;
 import nl.ing.opendialogue.repository.NavigationRuleRepository;
 import nl.ing.opendialogue.rules.Context;
 import nl.ing.opendialogue.rules.NavigationRule;
@@ -46,6 +47,22 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		NextAction action = new NextAction(nextActionContext, 
 				rule.getNextQuestion(), regex, rule.getErrorMessage(), rule.getIvrGrammar());
 		return action;
+	}
+
+
+	
+	/***
+	 * Ik zou graag zoiets willen terug krijgen. 
+	 * Een DialogueResponse met daarin:
+	 * 	- een contextUrl waarop de client een post of get doet. (kan leeg zijn als er niet naar een andere url hoeft worden gegaan)
+	 * 	- een lijst van vragen van het type (dat lijkt op) QuestionForCustomer
+	 */
+	@Override
+	public DialogueResponse getNextAction(String query) {
+
+		
+		
+		return null;
 	}
 	
 	

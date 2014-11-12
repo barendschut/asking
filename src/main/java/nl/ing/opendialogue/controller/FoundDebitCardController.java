@@ -20,16 +20,16 @@ public class FoundDebitCardController {
     public DialogueResponse validateCardQuestion() {
        
     	QuestionForCustomer questionPasnummer = new QuestionForCustomer();
-    	questionPasnummer.setQuestion("Wat is het pasnummer van de gevonden pas?");
+    	questionPasnummer.setQuestion("Wat zijn de laatste drie cijfers van het pasnummer van de gevonden pas?");
     	questionPasnummer.setParameterName("pasNummer");
-    	questionPasnummer.setRegexForAnswerGivenByCustomer("98*&");
+    	questionPasnummer.setRegexForAnswerGivenByCustomer("/\\d{3}/");
     	questionPasnummer.setErrorMessageForWrongInput("Dit is geen correct pasnummer");
     	
     	
     	QuestionForCustomer questionVervaldatum = new QuestionForCustomer();
     	questionVervaldatum.setQuestion("Wat is de vervaldatum van de gevonden pas?");
     	questionVervaldatum.setParameterName("vervalDatum");
-    	questionVervaldatum.setRegexForAnswerGivenByCustomer("D7**d&");
+    	questionVervaldatum.setRegexForAnswerGivenByCustomer("/.+/");
     	questionVervaldatum.setErrorMessageForWrongInput("Dit is geen correcte vervaldatum");    	
     	List<QuestionForCustomer> questions = Arrays.asList(questionVervaldatum, questionPasnummer);    		
 		
@@ -46,21 +46,14 @@ public class FoundDebitCardController {
     	String expiryDate = (String) model.get("expiryDate");
     	
     	//    	@RequestParam(value="cardNumber") String cardNumber, @RequestParam(value="expiryDate") String expiryDate
-        if (cardNumber.contains("1234") && expiryDate.contains("072017")) {
-        	
-        	// Gevonden flow
-        	// creditcard is gevonden in de backend.
-        	// haal de volgende stap op in de dialogue manager
-        	// dialogue manager geeft terug "u heeft de volgende gegevens ingevoerd"
-        	
+        if (isCardFound(cardNumber, expiryDate)) {
         	
         	QuestionForCustomer answerToClient = new QuestionForCustomer();
         	answerToClient.setQuestion("Bedankt voor het aanmelden van deze gevonden credit card! Deze pas wordt geblokkeerd.");
-        	
-        	List<QuestionForCustomer> answers = Arrays.asList(answerToClient);    		
+          	List<QuestionForCustomer> answers = Arrays.asList(answerToClient);    		
     		
     		DialogueResponse dialogueResponse = new DialogueResponse(answers);
-    		dialogueResponse.setContextUrl(HEROKU_URL +"/answer?query=");
+    		dialogueResponse.setContextUrl(HEROKU_URL +"/call-customer?customerNumber="); // Go controller which handles the outbound call. This controller will get the phonenumber from MDM based on customer number.
 			return dialogueResponse;
         }
 
@@ -70,4 +63,8 @@ public class FoundDebitCardController {
 		
 		return new DialogueResponse(answers);
     }
+
+	private boolean isCardFound(String cardNumber, String expiryDate) {
+		return cardNumber.contains("1234") && expiryDate.contains("072017");
+	}
 }
