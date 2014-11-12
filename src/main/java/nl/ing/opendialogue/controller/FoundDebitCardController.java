@@ -21,12 +21,14 @@ public class FoundDebitCardController {
     	questionPasnummer.setQuestion("Wat is het pasnummer van de gevonden pas?");
     	questionPasnummer.setParameterName("pasNummer");
     	questionPasnummer.setRegexForAnswerGivenByCustomer("98*&");
+    	questionPasnummer.setErrorMessageForWrongInput("Dit is geen correct pasnummer");
+    	
     	
     	QuestionForCustomer questionVervaldatum = new QuestionForCustomer();
     	questionVervaldatum.setQuestion("Wat is de vervaldatum van de gevonden pas?");
     	questionVervaldatum.setParameterName("vervalDatum");
     	questionVervaldatum.setRegexForAnswerGivenByCustomer("D7**d&");
-    	
+    	questionVervaldatum.setErrorMessageForWrongInput("Dit is geen correcte vervaldatum");    	
     	List<QuestionForCustomer> questions = Arrays.asList(questionVervaldatum, questionPasnummer);    		
 		
 		DialogueResponse response = new DialogueResponse(questions);

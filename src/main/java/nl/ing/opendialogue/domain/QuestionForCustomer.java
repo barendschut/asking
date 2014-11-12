@@ -14,6 +14,8 @@ public class QuestionForCustomer {
 	/** example: integer" */
 	private String regexForAnswerGivenByCustomer;
 
+	private String errorMessageForWrongInput;
+
 	public String getQuestion() {
 		return question;
 	}
@@ -37,5 +39,13 @@ public class QuestionForCustomer {
 	public void setRegexForAnswerGivenByCustomer(
 			String regexForAnswerGivenByCustomer) {
 		this.regexForAnswerGivenByCustomer = regexForAnswerGivenByCustomer;
+	}
+
+	public String getErrorMessageForWrongInput() {
+		return errorMessageForWrongInput;
+	}
+	
+	public void setErrorMessageForWrongInput(String errorMessageForWrongInput) {
+		this.errorMessageForWrongInput = errorMessageForWrongInput;
 	}
 }
