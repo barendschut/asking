@@ -3,6 +3,8 @@ package nl.ing.opendialogue.domain;
 import java.util.List;
 
 public class DialogueRequest {
+	
+	private String query;
 
 	// List of questions for the client
 	private final List<AnswerForApi> answers;
@@ -13,6 +15,14 @@ public class DialogueRequest {
 
 	public List<AnswerForApi> getAnswers() {
 		return answers;
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
 	}
 
 }

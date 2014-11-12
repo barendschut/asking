@@ -2,7 +2,9 @@ package nl.ing.opendialogue.domain;
 
 
 public class AnswerForApi {
-
+	
+	
+	
 	/** The answer given to the customer (semantically this could be a question). */
 	private String answer;
 
