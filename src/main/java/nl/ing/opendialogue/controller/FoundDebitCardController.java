@@ -27,10 +27,10 @@ public class FoundDebitCardController {
     	String expiryDate = (String) model.get("expiryDate");
     	
     	//    	@RequestParam(value="cardNumber") String cardNumber, @RequestParam(value="expiryDate") String expiryDate
-        if (isCardFound(cardNumber, expiryDate)) {
+        //if (isCardFound(cardNumber, expiryDate)) {
     		return navigationRuleRepository.getNextAction("/validate-card", "card found");
-        }
-		return navigationRuleRepository.getNextAction("/validate-card", "card not found");
+        //}
+		//return navigationRuleRepository.getNextAction("/validate-card", "card not found");
     }
 
 	private boolean isCardFound(String cardNumber, String expiryDate) {
