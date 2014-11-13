@@ -19,6 +19,8 @@ public class QuestionForCustomer {
 	private QuestionType type;
 	
 	private String step;
+	
+	private String url;
 
 	public String getStep() {
 		return step;
@@ -69,6 +71,14 @@ public class QuestionForCustomer {
 
 	public void setType(QuestionType type) {
 		this.type = type;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 
