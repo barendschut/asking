@@ -39,6 +39,6 @@ public class FoundCardController {
 	}
 
 	private boolean isCardFound(String cardNumber, String expiryDate) {
-		return cardNumber.contains("1234") && expiryDate.contains("072017");
+		return cardNumber.contains("1234123412341234") && expiryDate.contains("072017");
 	}
 }
