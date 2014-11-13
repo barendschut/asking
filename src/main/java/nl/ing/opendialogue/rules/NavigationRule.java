@@ -18,9 +18,10 @@ public class NavigationRule {
 	String errorMessage;
 	String ivrGrammar;
 	String parameterName;
+	String step;
 
 	public NavigationRule(final String context, final String question, final String nextContext, 
-			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName) {
+			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName, final String step) {
 		this.context = context;
 		this.question = question;
 		this.nextQuestion = nextQuestion;
@@ -29,6 +30,7 @@ public class NavigationRule {
 		this.errorMessage = errorMessage;
 		this.ivrGrammar = ivrGrammar;
 		this.parameterName = parameterName;
+		this.step = step;
 	}
 	
 	
@@ -48,7 +50,8 @@ public class NavigationRule {
 					grammarRule.getRegEx(),
 					grammarRule.getErrorMessage(),
 					grammarRule.getIvrGrammar(),
-					grammarRule.getParameterName()
+					grammarRule.getParameterName(),
+					grammarRule.getStep()
 					);
 			navigationList.add(navigationRule);
 		}
@@ -105,6 +108,9 @@ public class NavigationRule {
 	}
 
 
+	public String getStep() {
+		return step;
+	}
 
 
 }

@@ -15,7 +15,16 @@ public class GrammarRule {
 	private String errorMessage;
 	private String ivrGrammar;
 	private String parameterName;
+	private String step;
 	
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
+
 	public String getContext() {
 		return context;
 	}

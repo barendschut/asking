@@ -10,6 +10,7 @@ public class NextAction {
 	private String regex;
 	private String errorMessage;
 	private String ivrGrammar;
+	private String step;
 	
 	public NextAction(String context, String question, String regex,
 			String errorMessage, String ivrGrammar) {
@@ -49,8 +50,17 @@ public class NextAction {
 	}
 	public void setIvrGrammar(String ivrGrammar) {
 		this.ivrGrammar = ivrGrammar;
+	}
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
 	} 
 
+	
 
 
 }

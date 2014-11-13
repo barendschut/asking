@@ -17,6 +17,16 @@ public class QuestionForCustomer {
 
 	/** example: integer" */
 	private QuestionType type;
+	
+	private String step;
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
 
 	private String errorMessageForWrongInput;
 
