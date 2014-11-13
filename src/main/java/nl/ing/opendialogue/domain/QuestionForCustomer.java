@@ -20,6 +20,10 @@ public class QuestionForCustomer {
 	
 	private String step;
 
+	public QuestionForCustomer () {
+		
+	}
+	
 	public String getStep() {
 		return step;
 	}
