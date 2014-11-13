@@ -33,7 +33,7 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		for (NavigationRule rule: NavigationRule.getNavigationRules()) {
 				if(context!=null && context.equals(rule.getContext())) {
 					questionList.add(getQuestion(rule));
-					response.setContextUrl(HEROKU_URL + getNextContextUrl(rule));
+					response.setContextUrl(getNextContextUrl(rule));
 				}
 		}
 		
@@ -57,12 +57,9 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 	}
 	
 	private String getNextContextUrl(NavigationRule rule) {
-		String nextActionContext = null;
 		if (rule.getNextContext() != null) {
-			nextActionContext = rule.getNextContext(); 
+			return HEROKU_URL + rule.getNextContext();
 		}
-		return nextActionContext;
+		return null;
 	}
-	
-	
 }
