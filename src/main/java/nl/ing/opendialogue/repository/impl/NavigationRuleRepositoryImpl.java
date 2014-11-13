@@ -33,8 +33,20 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		DialogueResponse response = new DialogueResponse(questionList);
 		for (NavigationRule rule: NavigationRule.getNavigationRules()) {
 				if(context!=null && context.equals(rule.getContext())) {
-					questionList.add(getQuestion(rule));
-					response.setContextUrl(getNextContextUrl(rule));
+					if (context.equals("/answer")) {
+						if ((query == null || query.equals("")) &&
+							(rule.getQuestion()==null || rule.getQuestion().equals(""))) {
+							questionList.add(getQuestion(rule));
+							response.setContextUrl(HEROKU_URL + rule.getNextContext());
+						} else if (rule.mathes(query)){
+							questionList.add(getQuestion(rule));
+							response.setContextUrl(HEROKU_URL + rule.getNextContext());
+						}
+					} else {
+						questionList.add(getQuestion(rule));
+						response.setContextUrl(HEROKU_URL + rule.getNextContext());
+					}
+					
 				}
 		}
 		

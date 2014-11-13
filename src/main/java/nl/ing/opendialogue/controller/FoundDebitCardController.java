@@ -20,11 +20,11 @@ public class FoundDebitCardController {
 	public DialogueResponse validateCard(@RequestBody String cardNumber, @RequestBody String expiryDate) {
 
 		if (isCardFound(cardNumber, expiryDate)) {
-			return navigationRuleRepository.getNextAction("/validate-card",
-					"card found");
+			return navigationRuleRepository.getNextAction("/card-found-end",
+					null);
 		}
-		return navigationRuleRepository.getNextAction("/validate-card",
-				"card not found");
+		return navigationRuleRepository.getNextAction("/card-found-end",
+				null);
 	}
 
 	private boolean isCardFound(String cardNumber, String expiryDate) {

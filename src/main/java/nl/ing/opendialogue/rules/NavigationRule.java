@@ -23,7 +23,7 @@ public class NavigationRule {
 	public NavigationRule(final String context, final String question, final String nextContext, 
 			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName, final String step) {
 		this.context = context;
-		this.question = question;
+		this.question = question;   // our keywords
 		this.nextQuestion = nextQuestion;
 		this.nextContext = nextContext;
 		this.regEx = regEx;
@@ -112,5 +112,20 @@ public class NavigationRule {
 		return step;
 	}
 
+	public boolean mathes(String query) {
+		if (query == null) {
+			return false;
+		}
+		if (question!=null && !question.equals("")) {
+			String[] keywords = question.split(" ");
+			for (int i=0; i<keywords.length; i++) {
+				if(query.contains(keywords[i])){
+					return true;
+				}
+			}
+		
+		}	
+		return false;
+	}
 
 }
