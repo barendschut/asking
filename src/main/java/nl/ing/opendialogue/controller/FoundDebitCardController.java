@@ -20,16 +20,17 @@ public class FoundDebitCardController {
     @Autowired 
     private NavigationRuleRepository navigationRuleRepository;
     
+    
     @RequestMapping(value = "/validate-card", method = RequestMethod.POST)
     public DialogueResponse validateCard(ModelMap model) {
 
     	String cardNumber = (String) model.get("cardNumber");
     	String expiryDate = (String) model.get("expiryDate");
     	
-    	//    	@RequestParam(value="cardNumber") String cardNumber, @RequestParam(value="expiryDate") String expiryDate
-        if (isCardFound(cardNumber, expiryDate)) {
-    		return navigationRuleRepository.getNextAction("/validate-card", "card found");
-        }
+    //@RequestParam(value="cardNumber") String cardNumber, @RequestParam(value="expiryDate") String expiryDate
+    if (isCardFound(cardNumber, expiryDate)) {
+    	return navigationRuleRepository.getNextAction("/validate-card", "card found");
+      }
 		return navigationRuleRepository.getNextAction("/validate-card", "card not found");
     }
 
