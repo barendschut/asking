@@ -12,6 +12,7 @@ import nl.ing.opendialogue.rules.RegexRule;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 @Repository
 public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
@@ -58,7 +59,7 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 	}
 	
 	private String getNextContextUrl(NavigationRule rule) {
-		if (rule.getNextContext() != null) {
+		if (!StringUtils.isEmpty(rule.getNextContext())) {
 			return HEROKU_URL + rule.getNextContext();
 		}
 		return null;
