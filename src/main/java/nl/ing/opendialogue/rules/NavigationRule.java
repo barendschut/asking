@@ -5,6 +5,7 @@ import java.util.List;
 
 import nl.ing.opendialogue.grammar.GrammarRetriever;
 import nl.ing.opendialogue.grammar.GrammarRule;
+import org.springframework.util.StringUtils;
 
 public class NavigationRule {
 
@@ -113,19 +114,17 @@ public class NavigationRule {
 	}
 
 	public boolean matches(String query) {
-		if (query == null) {
-			return false;
+		if (StringUtils.isEmpty(query)) {
+			return StringUtils.isEmpty(question);
 		}
-		if (question!=null && !question.equals("")) {
-			String[] keywords = question.split(" ");
-			for (int i=0; i<keywords.length; i++) {
-				if(query.contains(keywords[i])){
-					return true;
-				}
+
+		String[] keywords = question.split(" ");
+		for (int i=0; i<keywords.length; i++) {
+			if(query.contains(keywords[i])){
+				return true;
 			}
-		
-		}	
+		}
+
 		return false;
 	}
-
 }
