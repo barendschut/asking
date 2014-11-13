@@ -4,7 +4,6 @@ import nl.ing.opendialogue.domain.DialogueResponse;
 import nl.ing.opendialogue.repository.NavigationRuleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,13 +17,8 @@ public class FoundDebitCardController {
 	private NavigationRuleRepository navigationRuleRepository;
 
 	@RequestMapping(value = "/validate-card", method = RequestMethod.POST)
-	public DialogueResponse validateCard(@RequestBody ModelMap model) {
+	public DialogueResponse validateCard(@RequestBody String cardNumber, @RequestBody String expiryDate) {
 
-		String cardNumber = (String) model.get("cardNumber");
-		String expiryDate = (String) model.get("expiryDate");
-
-		// @RequestParam(value="cardNumber") String cardNumber,
-		// @RequestParam(value="expiryDate") String expiryDate
 		if (isCardFound(cardNumber, expiryDate)) {
 			return navigationRuleRepository.getNextAction("/validate-card",
 					"card found");
