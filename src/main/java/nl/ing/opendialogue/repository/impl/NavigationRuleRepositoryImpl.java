@@ -32,7 +32,7 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		
 		DialogueResponse response = new DialogueResponse(questionList);
 		for (NavigationRule rule: NavigationRule.getNavigationRules()) {
-				if(context!=null && context.equals(rule.getContext())) {
+				if(isMatchingRule(rule, context, query)) {
 					questionList.add(getQuestion(rule));
 					response.setContextUrl(getNextContextUrl(rule));
 				}
@@ -40,7 +40,21 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		
 		return response;
 	}
-	
+
+	private boolean isMatchingRule(NavigationRule rule, String context, String query) {
+		if (context == null || rule == null) {
+			return false;
+		}
+		if (!context.equals(rule.getContext())) {
+			return false;
+		}
+		if (StringUtils.isEmpty(query)) {
+			return StringUtils.isEmpty(rule.getQuestion());
+		}
+
+		return query.equals(rule.getQuestion());
+	}
+
 	private QuestionForCustomer getQuestion(NavigationRule rule) {
 		String regex = null;
 		if (rule.getRegEx()!=null && RegexRule.getRegexRuleFromString(rule.getRegEx())!=null) {
