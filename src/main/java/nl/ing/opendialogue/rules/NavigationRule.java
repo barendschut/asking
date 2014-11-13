@@ -112,7 +112,7 @@ public class NavigationRule {
 		return step;
 	}
 
-	public boolean mathes(String query) {
+	public boolean matches(String query) {
 		if (query == null) {
 			return false;
 		}

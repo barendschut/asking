@@ -32,26 +32,10 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		
 		DialogueResponse response = new DialogueResponse(questionList);
 		for (NavigationRule rule: NavigationRule.getNavigationRules()) {
-				if(context!=null && context.equals(rule.getContext())) {
-					if (context.equals("/answer")) {
-						if ((query == null || query.equals("")) &&
-							(rule.getQuestion()==null || rule.getQuestion().equals(""))) {
-							questionList.add(getQuestion(rule));
-							response.setContextUrl(HEROKU_URL + rule.getNextContext());
-						} else if (rule.mathes(query)){
-							questionList.add(getQuestion(rule));
-							response.setContextUrl(HEROKU_URL + rule.getNextContext());
-						}
-					} else {
-						questionList.add(getQuestion(rule));
-						response.setContextUrl(HEROKU_URL + rule.getNextContext());
-					}
-					
-				if(isMatchingRule(rule, context, query)) {
-					questionList.add(getQuestion(rule));
-					response.setContextUrl(getNextContextUrl(rule));
-				}
-				}	
+			if(isMatchingRule(rule, context, query)) {
+				questionList.add(getQuestion(rule));
+				response.setContextUrl(getNextContextUrl(rule));
+			}
 		}
 		
 		return response;
@@ -61,14 +45,8 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		if (context == null || rule == null) {
 			return false;
 		}
-		if (!context.equals(rule.getContext())) {
-			return false;
-		}
-		if (StringUtils.isEmpty(query)) {
-			return StringUtils.isEmpty(rule.getQuestion());
-		}
 
-		return query.equals(rule.getQuestion());
+		return context.equals(rule.getContext()) && rule.matches(query);
 	}
 
 	private QuestionForCustomer getQuestion(NavigationRule rule) {
