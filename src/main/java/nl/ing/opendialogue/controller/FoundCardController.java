@@ -10,21 +10,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class FoundDebitCardController {
-
+public class FoundCardController {
 
 	@Autowired
 	private NavigationRuleRepository navigationRuleRepository;
-
+	
+	@RequestMapping(value = "/validate-card", method = RequestMethod.GET)
+	public DialogueResponse validateCard() {
+		return navigationRuleRepository.getNextAction("/validate-card", "");
+	}
+	
 	@RequestMapping(value = "/validate-card", method = RequestMethod.POST)
 	public DialogueResponse validateCard(@RequestBody String cardNumber, @RequestBody String expiryDate) {
 
 		if (isCardFound(cardNumber, expiryDate)) {
-			return navigationRuleRepository.getNextAction("/validate-card",
-					"card found");
+			return navigationRuleRepository.getNextAction("/validate-card", "card found");
 		}
-		return navigationRuleRepository.getNextAction("/validate-card",
-				"card not found");
+		return navigationRuleRepository.getNextAction("/validate-card", "card not found");
 	}
 
 	private boolean isCardFound(String cardNumber, String expiryDate) {

@@ -1,6 +1,6 @@
 package nl.ing.opendialogue.domain;
 
-public class OutBoundCall {
+public class OutBoundCallRequest {
 
 	private final String phoneNumber;
 	
@@ -10,7 +10,7 @@ public class OutBoundCall {
 	// Unique id by which we can identify the customer.
 	private final String customerIdentifier;
 	
-	public OutBoundCall (final String phoneNumber, final String customerIdentifier, final String contextUrl) {
+	public OutBoundCallRequest (final String phoneNumber, final String customerIdentifier, final String contextUrl) {
 		this.phoneNumber = phoneNumber;
 		this.customerIdentifier = customerIdentifier;
 		this.contextUrl = contextUrl;
