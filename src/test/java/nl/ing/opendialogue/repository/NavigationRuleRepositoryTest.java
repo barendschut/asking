@@ -12,7 +12,7 @@ public class NavigationRuleRepositoryTest {
 	public void testUnknownContext() {
 		NavigationRuleRepository repo = new NavigationRuleRepositoryImpl(); 
 		
-		DialogueResponse response = repo.getNextAction("/answer", "test query string");
+		DialogueResponse response = repo.getNextAction("/answer", "pas");
 		assertEquals(3, response.getQuestions().size());
 	}
 

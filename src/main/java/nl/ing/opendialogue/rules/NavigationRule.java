@@ -5,6 +5,7 @@ import java.util.List;
 
 import nl.ing.opendialogue.grammar.GrammarRetriever;
 import nl.ing.opendialogue.grammar.GrammarRule;
+import org.springframework.util.StringUtils;
 
 public class NavigationRule {
 
@@ -19,11 +20,12 @@ public class NavigationRule {
 	String ivrGrammar;
 	String parameterName;
 	String step;
+	String url;
 
 	public NavigationRule(final String context, final String question, final String nextContext, 
-			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName, final String step) {
+			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName, final String step, final String url) {
 		this.context = context;
-		this.question = question;
+		this.question = question;   // our keywords
 		this.nextQuestion = nextQuestion;
 		this.nextContext = nextContext;
 		this.regEx = regEx;
@@ -31,6 +33,7 @@ public class NavigationRule {
 		this.ivrGrammar = ivrGrammar;
 		this.parameterName = parameterName;
 		this.step = step;
+		this.url = url;
 	}
 	
 	
@@ -51,7 +54,8 @@ public class NavigationRule {
 					grammarRule.getErrorMessage(),
 					grammarRule.getIvrGrammar(),
 					grammarRule.getParameterName(),
-					grammarRule.getStep()
+					grammarRule.getStep(),
+					grammarRule.getUrl()
 					);
 			navigationList.add(navigationRule);
 		}
@@ -111,6 +115,26 @@ public class NavigationRule {
 	public String getStep() {
 		return step;
 	}
+	
+	
+
+	public String getUrl() {
+		return url;
+	}
 
 
+	public boolean matches(String query) {
+		if (StringUtils.isEmpty(question) || StringUtils.isEmpty(query)) {
+			return StringUtils.isEmpty(query) && StringUtils.isEmpty(question);
+		}
+
+		String[] keywords = question.split(" ");
+		for (int i=0; i<keywords.length; i++) {
+			if(query.contains(keywords[i])){
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

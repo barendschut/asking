@@ -32,15 +32,23 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		
 		DialogueResponse response = new DialogueResponse(questionList);
 		for (NavigationRule rule: NavigationRule.getNavigationRules()) {
-				if(context!=null && context.equals(rule.getContext())) {
-					questionList.add(getQuestion(rule));
-					response.setContextUrl(getNextContextUrl(rule));
-				}
+			if(isMatchingRule(rule, context, query)) {
+				questionList.add(getQuestion(rule));
+				response.setContextUrl(getNextContextUrl(rule));
+			}
 		}
 		
 		return response;
 	}
-	
+
+	private boolean isMatchingRule(NavigationRule rule, String context, String query) {
+		if (context == null || rule == null) {
+			return false;
+		}
+
+		return context.equals(rule.getContext()) && rule.matches(query);
+	}
+
 	private QuestionForCustomer getQuestion(NavigationRule rule) {
 		String regex = null;
 		if (rule.getRegEx()!=null && RegexRule.getRegexRuleFromString(rule.getRegEx())!=null) {
@@ -55,7 +63,7 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		question.setRegexForAnswerGivenByCustomer(regex);
 		question.setStep(rule.getStep());
 		question.setType(QuestionType.getQuestionTypeFromString(rule.getIvrGrammar())); 		
-		
+		question.setUrl(rule.getUrl());
 		return question;
 	}
 	
