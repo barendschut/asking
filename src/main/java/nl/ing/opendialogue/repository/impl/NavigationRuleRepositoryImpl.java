@@ -63,7 +63,7 @@ public class NavigationRuleRepositoryImpl implements NavigationRuleRepository {
 		question.setRegexForAnswerGivenByCustomer(regex);
 		question.setStep(rule.getStep());
 		question.setType(QuestionType.getQuestionTypeFromString(rule.getIvrGrammar())); 		
-		
+		question.setUrl(rule.getUrl());
 		return question;
 	}
 	

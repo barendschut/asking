@@ -20,9 +20,10 @@ public class NavigationRule {
 	String ivrGrammar;
 	String parameterName;
 	String step;
+	String url;
 
 	public NavigationRule(final String context, final String question, final String nextContext, 
-			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName, final String step) {
+			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName, final String step, final String url) {
 		this.context = context;
 		this.question = question;   // our keywords
 		this.nextQuestion = nextQuestion;
@@ -32,6 +33,7 @@ public class NavigationRule {
 		this.ivrGrammar = ivrGrammar;
 		this.parameterName = parameterName;
 		this.step = step;
+		this.url = url;
 	}
 	
 	
@@ -52,7 +54,8 @@ public class NavigationRule {
 					grammarRule.getErrorMessage(),
 					grammarRule.getIvrGrammar(),
 					grammarRule.getParameterName(),
-					grammarRule.getStep()
+					grammarRule.getStep(),
+					grammarRule.getUrl()
 					);
 			navigationList.add(navigationRule);
 		}
@@ -112,6 +115,13 @@ public class NavigationRule {
 	public String getStep() {
 		return step;
 	}
+	
+	
+
+	public String getUrl() {
+		return url;
+	}
+
 
 	public boolean matches(String query) {
 		if (StringUtils.isEmpty(query)) {

@@ -16,6 +16,7 @@ public class GrammarRule {
 	private String ivrGrammar;
 	private String parameterName;
 	private String step;
+	private String url;
 	
 	public String getStep() {
 		return step;
@@ -87,6 +88,14 @@ public class GrammarRule {
 
 	public void setParameterName(String parameterName) {
 		this.parameterName = parameterName;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	
