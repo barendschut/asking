@@ -114,8 +114,8 @@ public class NavigationRule {
 	}
 
 	public boolean matches(String query) {
-		if (StringUtils.isEmpty(question)) {
-			return StringUtils.isEmpty(query);
+		if (StringUtils.isEmpty(question) || StringUtils.isEmpty(query)) {
+			return StringUtils.isEmpty(query) && StringUtils.isEmpty(question);
 		}
 
 		String[] keywords = question.split(" ");
