@@ -19,6 +19,6 @@ public class AnswerController {
     
 	@RequestMapping("/answer")
     public DialogueResponse answerQuery(final String query) {
-		return navigationRuleRepository.getNextAction(query);
+		return navigationRuleRepository.getNextAction("/answer", query);
     }
 }

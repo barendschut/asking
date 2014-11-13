@@ -8,37 +8,48 @@ import nl.ing.opendialogue.grammar.GrammarRule;
 
 public class NavigationRule {
 
-	Context context;
+	String context;
 	String question;
 
-	Context nextContext;
+	String nextContext;
 	String nextQuestion;
 
 	String regEx;
 	String errorMessage;
 	String ivrGrammar;
+	String parameterName;
 
-	public NavigationRule(final Context context, final String question, final Context nextContext, final String nextQuestion) {
+	public NavigationRule(final String context, final String question, final String nextContext, 
+			final String nextQuestion, final String regEx, final String errorMessage, final String ivrGrammar, final String parameterName) {
 		this.context = context;
 		this.question = question;
 		this.nextQuestion = nextQuestion;
 		this.nextContext = nextContext;
+		this.regEx = regEx;
+		this.errorMessage = errorMessage;
+		this.ivrGrammar = ivrGrammar;
+		this.parameterName = parameterName;
 	}
 	
 	
 	public static List<NavigationRule> getNavigationRules() {
-		//return getRulesFromApi();
+		return getRulesFromApi();
 
-		return getRulesFromStub();
+		//return getRulesFromStub();
 	}
 	
 	private static List<NavigationRule> getRulesFromApi() {
 		List<NavigationRule> navigationList = new ArrayList<NavigationRule>();
 		for (GrammarRule grammarRule : GrammarRetriever.getGrammarRules()) {
-			NavigationRule navigationRule = new NavigationRule(Context.getContextFromString(grammarRule.getContext()),
+			NavigationRule navigationRule = new NavigationRule(grammarRule.getContext(),
 					grammarRule.getQuery(),
-					Context.getContextFromString(grammarRule.getNextContext()),
-					grammarRule.getNextQuery());
+					grammarRule.getNextContext(),
+					grammarRule.getNextQuery(),
+					grammarRule.getRegEx(),
+					grammarRule.getErrorMessage(),
+					grammarRule.getIvrGrammar(),
+					grammarRule.getParameterName()
+					);
 			navigationList.add(navigationRule);
 		}
 		return navigationList;
@@ -46,17 +57,17 @@ public class NavigationRule {
 	
 	private static List<NavigationRule> getRulesFromStub() {
 		List<NavigationRule> navigationList = new ArrayList<NavigationRule>();
-		navigationList.add(new NavigationRule(null, "pas gevonden", Context.IBAN, "Dank u voor het melden.Als u ons enkele gegevens over de pas kunt verstrekken, dan lichten wij de eigenaar in. Wat is het IBAN nummer van de pas?"));
-		navigationList.add(new NavigationRule(Context.IBAN, "REGEX_ACCOUNT_NUMBER", Context.CARD_NUMBER, "Dank u wat is het pasnummer"));
-		navigationList.add(new NavigationRule(Context.IBAN, "REGEX_NOT_ACCOUNT_NUMBER", Context.IBAN, "Dit is geen iban nummer, geef de laatste 10 cijfers"));
-		navigationList.add(new NavigationRule(Context.CARD_NUMBER, "TODO regex number", Context.CARD_NUMBER_CHECK, null));
-		navigationList.add(new NavigationRule(Context.CARD_NUMBER_CHECK, "OK", Context.CALL_PASSOWNER_TO_BLOCK_PASS, "U mag de pas weggooien. Vanaf nu is deze niet meer bruikbaar"));
-		navigationList.add(new NavigationRule(Context.CARD_NUMBER_CHECK, "NOK", null, "Deze pas kennen we niet in ons systeem. Tot ziens"));
+		//navigationList.add(new NavigationRule(null, "pas gevonden", Context.IBAN, "Dank u voor het melden.Als u ons enkele gegevens over de pas kunt verstrekken, dan lichten wij de eigenaar in. Wat is het IBAN nummer van de pas?"));
+		//navigationList.add(new NavigationRule(Context.IBAN, "REGEX_ACCOUNT_NUMBER", Context.CARD_NUMBER, "Dank u wat is het pasnummer"));
+		//navigationList.add(new NavigationRule(Context.IBAN, "REGEX_NOT_ACCOUNT_NUMBER", Context.IBAN, "Dit is geen iban nummer, geef de laatste 10 cijfers"));
+		//navigationList.add(new NavigationRule(Context.CARD_NUMBER, "TODO regex number", Context.CARD_NUMBER_CHECK, null));
+		//navigationList.add(new NavigationRule(Context.CARD_NUMBER_CHECK, "OK", Context.CALL_PASSOWNER_TO_BLOCK_PASS, "U mag de pas weggooien. Vanaf nu is deze niet meer bruikbaar"));
+		//navigationList.add(new NavigationRule(Context.CARD_NUMBER_CHECK, "NOK", null, "Deze pas kennen we niet in ons systeem. Tot ziens"));
 		return navigationList;
 	}
 
 	
-	public Context getContext() {
+	public String getContext() {
 		return context;
 	}
 	
@@ -74,7 +85,7 @@ public class NavigationRule {
 	}
 
 
-	public Context getNextContext() {
+	public String getNextContext() {
 		return nextContext;
 	}
 
@@ -86,6 +97,11 @@ public class NavigationRule {
 
 	public String getRegEx() {
 		return regEx;
+	}
+
+
+	public String getParameterName() {
+		return parameterName;
 	}
 
 

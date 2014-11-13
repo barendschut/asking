@@ -61,7 +61,5 @@ public class QuestionForCustomer {
 		this.type = type;
 	}
 
-	public enum QuestionType {
-		ALPHANUMERIC, NUMERIC, DATE;
-	}
+
 }

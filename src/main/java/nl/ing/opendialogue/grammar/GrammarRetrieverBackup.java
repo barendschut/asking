@@ -41,6 +41,7 @@ public class GrammarRetrieverBackup {
 		ResponseEntity<GrammarResponse> response = restTemplate.exchange(
 				"https://api.parse.com/1/classes/NavigationRule",
 				HttpMethod.GET, entity, GrammarResponse.class);
+		System.out.println(response.getBody());
 		response.getBody();
 
 	}

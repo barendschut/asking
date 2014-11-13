@@ -11,6 +11,11 @@ public class GrammarRule {
 	private String nextContext;
 	private String nextQuery;
 	
+	private String regEx;
+	private String errorMessage;
+	private String ivrGrammar;
+	private String parameterName;
+	
 	public String getContext() {
 		return context;
 	}
@@ -42,6 +47,41 @@ public class GrammarRule {
 	public void setNextQuery(String nextQuery) {
 		this.nextQuery = nextQuery;
 	}
+
+	public String getRegEx() {
+		return regEx;
+	}
+
+	public void setRegEx(String regEx) {
+		this.regEx = regEx;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+	public String getIvrGrammar() {
+		return ivrGrammar;
+	}
+
+	public void setIvrGrammar(String ivrGrammar) {
+		this.ivrGrammar = ivrGrammar;
+	}
+
+	public String getParameterName() {
+		return parameterName;
+	}
+
+	public void setParameterName(String parameterName) {
+		this.parameterName = parameterName;
+	}
+	
+	
+	
 	
 }
 
